@@ -1,3 +1,5 @@
+# LeetCode: https://leetcode.com/problems/valid-parentheses/
+# NeetCode: https://www.youtube.com/watch?v=WTzjTskDFMg
 class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
