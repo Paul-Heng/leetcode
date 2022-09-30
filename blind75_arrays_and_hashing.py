@@ -5,7 +5,7 @@
 from typing import List
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
-        
+
         hashSet = set()
         
         for num in nums:
@@ -33,9 +33,9 @@ class Solution:
         countStringt = {}
 
         for i in range(len(s)):
-            # Parameter:	    Description
-            # keyname:	        Required. The keyname of the item you want to return the value from
-            # value:	        Optional. A value to return if the specified key does not exist.
+            # Parameter:        Description
+            # keyname:          Required. The keyname of the item you want to return the value from
+            # value:            Optional. A value to return if the specified key does not exist.
             #                   Default value None
 
             countStrings[s[i]] = countStrings.get(s[i], 0) + 1
@@ -43,3 +43,17 @@ class Solution:
 
         # Returns true if the hashmaps equal each other. Returns false if they do not.
         return countStrings == countStringt
+
+# Arrays & Hashing #3
+# 1. Two Sum (Easy)
+# https://leetcode.com/problems/two-sum/
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        prevMap = {}  # val -> index
+
+        for i, n in enumerate(nums):
+            diff = target - n
+            if diff in prevMap:
+                return [prevMap[diff], i]
+            prevMap[n] = i
