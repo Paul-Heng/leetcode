@@ -1,8 +1,9 @@
+from typing import List
+
 # Arrays & Hashing #1
 # 217. Contains Duplicate (Easy)
 # https://leetcode.com/problems/contains-duplicate/
 
-from typing import List
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
 
@@ -57,3 +58,30 @@ class Solution:
             if diff in prevMap:
                 return [prevMap[diff], i]
             prevMap[n] = i
+
+# Arrays & Hashing #4
+# 49. Group Anagrams (Medium)
+# https://leetcode.com/problems/group-anagrams/
+
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        res = {}
+        for string in strs:
+            count = [0] * 26 
+
+            for char in string:
+                # Give an +1 at each char
+                # A = 0, B = 1
+                # ord('a') - ord('a') = 0
+                # ord('b') - ord('a') = 1
+                count[ord(char) - ord('a')] += 1
+
+            # Lists cannot be keys for dictionaries
+            # So we turn them into tuples
+            # We also check if the key exists before trying to append a new item
+            # If it doesn exist we make a new list
+            if tuple(count) in res.keys():
+                res[tuple(count)].append(string)
+            else:
+                res[tuple(count)] = [string]
+        return res.values()
