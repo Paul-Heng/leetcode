@@ -85,3 +85,30 @@ class Solution:
             else:
                 res[tuple(count)] = [string]
         return res.values()
+
+# Arrays & Hashing #5
+# 347. Top K Frequent Elements (Medium)
+# https://leetcode.com/problems/top-k-frequent-elements/
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        count = {}
+        freq = [[] for i in range(len(nums) + 1)]
+
+        # Get a count of each number
+        for n in nums:
+            count[n] = 1 + count.get(n, 0)
+        
+        # Make the list index the count
+        for key, value in count.items():
+            freq[value].append(key)
+
+        
+        res = []
+
+        # Interate through the list backwards and get the first k values
+        for values in freq[::-1]:
+            for value in values:
+                res.append(value)
+                if len(res) == k:
+                    return res
